@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "dynamodb"
+version = "0.1.0"
+description = "exercicio de dynamodb do curso de aws-expert"
+authors = ["Gabriel Cristian <gabriel.cristiann@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+boto3 = "^1.35.52"
+fastapi = "^0.115.4"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.0"
+taskipy = "^1.13.0"
+pytest = "^8.2.2"
+pytest-cov = "^5.0.0"
+aiosqlite = "^0.20.0"
+pytest-asyncio = "^0.23.8"
+ipython = "^8.27.0"
+boto3-stubs = {version = "1.34.131", extras = ["ec2", "iam", "route53", "sts"]}
+ipdb = "^0.13.13"
+
+[tool.pytest.ini_options]
+pythonpath = '.'
+addopts = '-p no:warnings'
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I','F','E','W','PL','PT']
+ignore = ['E501']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.taskipy.tasks]
+run = 'PYTHONBREAKPOINT=ipdb.set_trace fastapi dev server_launcher/app.py'
+
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=server_launcher -vv'
+post_test = 'coverage html'
+
+lint = 'ruff check . ; ruff check . --diff'
+format = 'ruff check . --fix ; ruff format .'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
