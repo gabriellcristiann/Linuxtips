@@ -11,14 +11,12 @@ class DynamoDB:
             response = self.client.create_table(
                 TableName='hosts',
                 KeySchema=[
-                    {'AttributeName': 'id', 'KeyType': 'HASH'},
-                    {'AttributeName': 'host_name', 'KeyType': 'RANGE'},
-                    {'AttributeName': 'ip_address', 'KeyType': 'RANGE'}
+                    {'AttributeName': 'name', 'KeyType': 'RANGE'},
+                    {'AttributeName': 'ip', 'KeyType': 'RANGE'}
                 ],
                 AttributeDefinitions=[
-                    {'AttributeName': 'id','AttributeType': 'N'},
-                    {'AttributeName': 'host_name', 'AttributeType': 'S'},
-                    {'AttributeName': 'ip_address', 'AttributeType': 'S'}
+                    {'AttributeName': 'name', 'AttributeType': 'S'},
+                    {'AttributeName': 'ip', 'AttributeType': 'S'}
                 ],
                 ProvisionedThroughput={
                     'ReadCapacityUnits': 5,
