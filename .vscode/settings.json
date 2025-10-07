@@ -1,3 +1,13 @@
 {
-    "python.analysis.typeCheckingMode": "basic"
+    "python.pythonPath": ".venv/bin/python",
+    "python.analysis.typeCheckingMode": "basic",
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.pythonProjects": [],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.venv": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/htmlcov": true
+    }
 }

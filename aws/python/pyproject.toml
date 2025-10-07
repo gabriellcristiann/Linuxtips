@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 boto3 = "^1.35.52"
-fastapi = "^0.115.4"
+fastapi = {version = "^0.115.4", extras = ["standard"]}
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.5.0"
@@ -39,10 +39,10 @@ preview = true
 quote-style = 'single'
 
 [tool.taskipy.tasks]
-run = 'PYTHONBREAKPOINT=ipdb.set_trace fastapi dev server_launcher/app.py'
+run = 'fastapi dev dynamodb/main.py'
 
 pre_test = 'task lint'
-test = 'pytest -s -x --cov=server_launcher -vv'
+test = 'pytest -s -x --cov=dynamodb -vv'
 post_test = 'coverage html'
 
 lint = 'ruff check . ; ruff check . --diff'
