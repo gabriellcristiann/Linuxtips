@@ -2,17 +2,16 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
   labels:
-    run: nginx
-  name: nginx
+    run: girus
+  name: girus
 spec:
   containers:
   - image: nginx
-    name: nginx
-    resources: {}
+    name: girus
     ports:
     - containerPort: 80
+    resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
