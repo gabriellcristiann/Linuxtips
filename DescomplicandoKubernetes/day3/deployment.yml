@@ -4,26 +4,32 @@ kind: Deployment
 metadata:
   labels:
     app: nginx-deployment
+    fruta: banana
   name: nginx-deployment
+  namespace: giropops
 spec:
-  replicas: 3
+  replicas: 14
   selector:
     matchLabels:
       app: nginx-deployment
-  strategy: {}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 25%
   template:
     metadata:
       labels:
         app: nginx-deployment
     spec:
       containers:
-      - image: nginx
-        name: nginx
+      - image: nginx:1.17.0
+        name: nginx-opa
         resources:
           limits:
-            cpu: 0.5
+            cpu: 0.9
             memory: 256Mi
           requests:
-            cpu: 0.3
+            cpu: 0.4
             memory: 64Mi
 ...
