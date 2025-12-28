@@ -1,3 +1,7 @@
+# Terraform MGC Kubernetes Cluster
+
+Este _IAC_ cria os recursos necessários para subir um cluster Kubernetes (_BareMetal_) na Magalu Cloud utilizando o provedor MGC do Terraform.
+
 ## Requirements
 
 | Name | Version |
