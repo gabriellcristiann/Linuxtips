@@ -93,3 +93,19 @@ Por fim, vamos habilitar o serviço do _kubelet_ para que ele inicie automaticam
 ```bash
 sudo systemctl enable --now kubelet
 ```
+## Inicializando o Cluster Kubernetes
+
+Agora que temos tudo configurado, vamos iniciar o nosso cluster:
+
+```bash
+sudo kubeadm init --pod-network-cidr=10.10.0.0/16 --apiserver-advertise-address=<O IP Privado do Master>
+```
+
+Após a execução bem-sucedida do comando acima, você verá uma mensagem informando que o cluster foi inicializado com sucesso. Além disso, você verá um comando para configurar o acesso ao cluster com o kubectl. Copie e cole esse comando em seu terminal:
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
