@@ -51,6 +51,33 @@ variable "sg_rules" {
       port_max    = 2380
       protocol    = "tcp"
       source_cidr = "0.0.0.0/0"
+    },
+    cni-weave-net-tcp = {
+      description = "CNI WEAVE NET TCP"
+      is_egress   = false
+      ipv         = 4
+      port_min    = 6783
+      port_max    = 6783
+      protocol    = "tcp"
+      source_cidr = "0.0.0.0/0"
+    },
+    cni-weave-net-udp = {
+      description = "CNI WEAVE NET UDP"
+      is_egress   = false
+      ipv         = 4
+      port_min    = 6783
+      port_max    = 6783
+      protocol    = "udp"
+      source_cidr = "0.0.0.0/0"
+    },
+    cni-weave-net-udp2 = {
+      description = "CNI WEAVE NET UDP"
+      is_egress   = false
+      ipv         = 4
+      port_min    = 6784
+      port_max    = 6784
+      protocol    = "udp"
+      source_cidr = "0.0.0.0/0"
     }
   }
 }
