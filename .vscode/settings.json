@@ -9,5 +9,9 @@
         "**/.pytest_cache": true,
         "**/.ruff_cache": true,
         "**/htmlcov": true
-    }
+    },
+    "cSpell.words": [
+        "github",
+        "prometheus"
+    ]
 }
