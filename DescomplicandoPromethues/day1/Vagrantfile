@@ -1,17 +1,29 @@
 $script = <<-SCRIPT
-apt-get update && apt upgrade -y 
+  export DEBIAN_FRONTEND=noninteractive
+  apt-get update -qq
+  # Instale apenas o necessário. Evite upgrade geral em laboratórios de infra.
 SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/jammy64"
+  # Garante que a box não seja atualizada automaticamente, mantendo o ambiente imutável
+  config.vm.box_check_update = false 
 
   config.vm.define "promserver" do |promserver|
+    promserver.vm.hostname = "promserver"
+    
     promserver.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
       vb.cpus = 1
+      # Resolve o erro de Driver Clash
+      vb.customize ["modifyvm", :id, "--usb", "off"]
+      vb.customize ["modifyvm", :id, "--usbehci", "off"]
+      vb.customize ["modifyvm", :id, "--audio", "none"] # SRE tip: server não precisa de áudio
     end
-#    promserver.vm.synced_folder "./prometheus-files", "/home/vagrant/prometheus-files"
+
+    # Se a interface enp4s0 não existir, o Vagrant perguntará qual usar em vez de quebrar
     promserver.vm.network "public_network", ip: "192.168.88.150", bridge: "enp4s0"
+    
     promserver.vm.provision "shell", inline: $script
   end
 end
