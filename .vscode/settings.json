@@ -11,6 +11,7 @@
         "**/htmlcov": true
     },
     "cSpell.words": [
+        "giropops",
         "github",
         "nginx",
         "prometheus"
