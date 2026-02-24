@@ -18,3 +18,10 @@ kubectl wait --namespace ingress-nginx \
 No comando acima, estamos esperando que os pods do Ingress Controller estejam prontos, 
 com o label **app.kubernetes.io/component=controller**, no namespace **ingress-nginx**, 
 e caso não estejam prontos em 90 segundos, o comando irá falhar.
+
+## init eks
+
+```bash
+eksctl create cluster --name=eks-cluster --region=us-east-1 --nodegroup-name=eks-cluster-nodegroup \                       ─╯
+--node-type=t3.medium --nodes=2 --nodes-min=1 --nodes-max=3 --managed --profile test-dev
+```
